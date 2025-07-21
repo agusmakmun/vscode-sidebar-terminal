@@ -1,142 +1,166 @@
 # Sidebar Terminal Extension
 
-A VS Code extension that provides quick terminal access in the sidebar, similar to the Explorer view.
+A VS Code extension that provides quick terminal access from the sidebar with a clean, simple interface.
 
 ## Features
 
-- **Sidebar Terminal View**: Access terminal controls directly from the sidebar
-- **Keyboard Shortcut**: Quick terminal access with `Cmd+Shift+T` (Mac) or `Ctrl+Shift+T` (Windows/Linux)
-- **Multiple Terminal Actions**: Open, create new, and focus terminals from the sidebar
-- **VS Code Integration**: Seamlessly integrates with VS Code's native terminal system
+- **🖥️ Sidebar Terminal Interface**: Clean terminal access directly from the sidebar
+- **⌨️ One-Click Terminal**: Open terminal in bottom panel with a single click
+- **🎨 VS Code Styling**: Native VS Code theme integration
+- **⌨️ Keyboard Shortcut**: Quick access with `Cmd+Shift+T` (Mac) or `Ctrl+Shift+T` (Windows/Linux)
+- **🚀 Simple & Fast**: Lightweight extension with minimal overhead
 
 ## Installation
 
+### From VSIX Package
+
+1. Download the latest `.vsix` file from releases
+2. In VS Code, go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+3. Click the "..." menu → "Install from VSIX..."
+4. Select the downloaded `.vsix` file
+5. Restart VS Code
+
 ### Development Installation
 
-1. Clone or navigate to the extension directory
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/agusmakmun/vscode-sidebar-terminal.git
+   cd vscode-sidebar-terminal
+   ```
+
 2. Install dependencies:
    ```bash
    npm install
    ```
+
 3. Compile the extension:
    ```bash
    npm run compile
    ```
+
 4. Press `F5` in VS Code to launch the extension in a new window
 
-### Production Installation
+### Building for Distribution
 
-1. Package the extension:
-   ```bash
-   vsce package
-   ```
-2. Install the `.vsix` file in VS Code
+```bash
+npm run compile    # Compile TypeScript
+vsce package       # Create .vsix package
+```
 
 ## Usage
 
-### Sidebar Access
+### Quick Start
 
-1. Look for the **Sidebar Terminal** icon in the activity bar (left sidebar)
-2. Click the icon to open the terminal sidebar view
-3. Use the buttons in the sidebar to:
-   - **📟 Open Terminal**: Create and show a new terminal
-   - **➕ New Terminal**: Create an additional terminal
-   - **🎯 Focus Terminal**: Bring focus to the active terminal
+1. **Look for the Sidebar Terminal icon** in the activity bar (left sidebar)
+2. **Click the icon** to open the terminal sidebar view
+3. **Click "📟 Open Terminal"** to open a terminal in the bottom panel
+4. **Use the terminal** as you normally would
+
+### What You'll See
+
+When you click the Sidebar Terminal icon, you'll see:
+- 💻 Terminal icon
+- "Sidebar Terminal" title
+- "Click the button below to open a terminal in the bottom panel"
+- 📟 "Open Terminal" button
+- Keyboard shortcut hint
 
 ### Keyboard Shortcuts
 
-- **`Cmd+Shift+T`** (Mac) / **`Ctrl+Shift+T`** (Windows/Linux): Open terminal in sidebar
+- **`Cmd+Shift+T`** (Mac) / **`Ctrl+Shift+T`** (Windows/Linux): Open terminal
 - **`Ctrl+Shift+P`** / **`Cmd+Shift+P`**: Command palette → "Open Terminal in Sidebar"
-
-### Command Palette
-
-You can also access the terminal functionality through the command palette:
-1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
-2. Type "Open Terminal in Sidebar"
-3. Select the command to execute
 
 ## Development
 
 ### Project Structure
 
 ```
-sidebar-terminal/
+vscode-sidebar-terminal/
 ├── src/
-│   ├── extension.ts          # Main extension logic
-│   └── test/
-│       └── extension.test.ts # Unit tests
+│   └── extension.ts          # Main extension logic
+├── images/
+│   └── terminal-icon.svg     # Sidebar icon
 ├── package.json              # Extension manifest
 ├── tsconfig.json            # TypeScript configuration
+├── .vscodeignore            # Files excluded from package
+├── .gitignore               # Git ignore rules
 └── README.md               # This file
 ```
 
-### Building
+### Available Scripts
 
 ```bash
-npm run compile    # Compile TypeScript
-npm run watch      # Watch for changes
+npm run compile    # Compile TypeScript to JavaScript
+npm run watch      # Watch for changes and recompile
 npm run lint       # Run ESLint
-npm test           # Run tests
+npm run test       # Run tests
+vsce package       # Create VSIX package
 ```
-
-### Testing
-
-The extension includes comprehensive tests:
-
-```bash
-npm test
-```
-
-Tests cover:
-- Extension activation
-- Command registration
-- Terminal creation
-- Webview provider functionality
 
 ### Debugging
 
 1. Set breakpoints in `src/extension.ts`
 2. Press `F5` to launch extension in debug mode
-3. Use the Debug Console to see extension output
-4. Reload the extension window to test changes
+3. Check the Debug Console for extension output
+4. Reload the extension window (`Ctrl+R` / `Cmd+R`) to test changes
+
+## How It Works
+
+The extension uses VS Code's **WebviewView API** to create a custom sidebar view that:
+
+1. **Registers a WebviewView provider** for the sidebar
+2. **Creates a simple HTML interface** with a terminal button
+3. **Handles button clicks** to open terminals in the bottom panel
+4. **Integrates with VS Code's native terminal system**
 
 ## Configuration
 
-The extension uses VS Code's native terminal system and doesn't require additional configuration. It integrates with:
+The extension requires no configuration and works out of the box. It integrates with:
 
-- VS Code's built-in terminal
-- Terminal profiles and settings
-- Terminal appearance and behavior settings
+- VS Code's built-in terminal system
+- Your existing terminal profiles and settings
+- VS Code's theme and appearance settings
 
 ## Troubleshooting
 
-### Terminal Not Opening
+### Extension Not Working
 
-1. Check if the extension is activated (look for "Sidebar Terminal extension is now active!" in Debug Console)
-2. Verify the command is registered by checking the command palette
-3. Check the Debug Console for error messages
+1. **Check activation**: Look for "Sidebar Terminal extension activated!" in Debug Console
+2. **Verify installation**: Ensure the extension appears in Extensions list
+3. **Restart VS Code**: Sometimes a restart is needed after installation
 
-### Sidebar Not Visible
+### Sidebar Icon Not Visible
 
-1. Ensure the extension is properly installed and activated
-2. Look for the "Sidebar Terminal" icon in the activity bar
-3. Try reloading the VS Code window (`Ctrl+R` or `Cmd+R`)
+1. **Check activity bar**: Look for the terminal icon in the left sidebar
+2. **Reload window**: Press `Ctrl+R` / `Cmd+R` to reload
+3. **Check extensions**: Ensure the extension is enabled
 
-### Keyboard Shortcut Not Working
+### "No Data Provider" Error
 
-1. Check if the shortcut conflicts with other extensions
-2. Verify the keybinding in VS Code settings
-3. Try using the command palette as an alternative
+1. **Complete uninstall**: Remove the extension completely
+2. **Restart VS Code**: Close and reopen VS Code
+3. **Reinstall**: Install the latest `.vsix` file
+4. **Restart again**: Restart VS Code after installation
 
 ## Contributing
 
 1. Fork the repository
-2. Create a feature branch
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
 3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
+4. Run tests (`npm test`)
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
 
 ## License
 
-This extension is part of the cloud-labs project.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Changelog
+
+### v0.0.1
+- Initial release
+- Sidebar terminal interface
+- One-click terminal opening
+- VS Code theme integration
+- Keyboard shortcut support

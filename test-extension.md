@@ -1,114 +1,143 @@
 # Testing the Sidebar Terminal Extension
 
-## Manual Testing Guide
+This guide helps you test the Sidebar Terminal extension to ensure it's working correctly.
 
-### Prerequisites
-- VS Code installed
-- Extension compiled (`npm run compile`)
-- All tests passing (`npm test`)
+## Prerequisites
 
-### Test Steps
+- VS Code or Cursor editor
+- The extension installed (either via VSIX or development mode)
 
-#### 1. Launch Extension in Debug Mode
-1. Open the `e2e/sidebar-terminal` folder in VS Code
-2. Press `F5` to launch the extension in a new window
-3. Verify the extension activates (check Debug Console for "Sidebar Terminal extension is now active!")
+## Manual Testing Steps
 
-#### 2. Test Sidebar Icon
-1. Look for the "Sidebar Terminal" icon in the activity bar (left sidebar)
-2. Click the icon to open the sidebar view
-3. Verify the sidebar shows terminal controls with buttons
+### 1. Extension Activation
 
-#### 3. Test Terminal Creation
+**Test**: Verify the extension activates properly
+
+**Steps**:
+1. Open VS Code/Cursor
+2. Open the Debug Console (`View` → `Debug Console`)
+3. Look for the message: "Sidebar Terminal extension activated!"
+4. Look for the message: "Registering webview provider..."
+
+**Expected Result**: Both messages should appear in the Debug Console
+
+### 2. Sidebar Icon Visibility
+
+**Test**: Check if the sidebar icon appears
+
+**Steps**:
+1. Look at the activity bar (left sidebar)
+2. Find the terminal icon (should be between other sidebar icons)
+
+**Expected Result**: Terminal icon should be visible in the activity bar
+
+### 3. Sidebar View Opening
+
+**Test**: Verify the sidebar view opens correctly
+
+**Steps**:
+1. Click the terminal icon in the activity bar
+2. Look for the sidebar content
+
+**Expected Result**: Should see:
+- 💻 Terminal icon
+- "Sidebar Terminal" title
+- "Click the button below to open a terminal in the bottom panel"
+- "📟 Open Terminal" button
+- Keyboard shortcut hint
+
+### 4. Terminal Opening
+
+**Test**: Verify terminal opens in bottom panel
+
+**Steps**:
 1. Click the "📟 Open Terminal" button in the sidebar
-2. Verify a new terminal opens in the terminal panel
-3. Check that the terminal is named "Sidebar Terminal"
-4. Verify the notification "Terminal opened! Use the sidebar view for quick access." appears
+2. Look for a terminal appearing in the bottom panel
+3. Check for the success message: "Terminal opened in bottom panel!"
 
-#### 4. Test Additional Terminal Actions
-1. Click "➕ New Terminal" to create another terminal
-2. Click "🎯 Focus Terminal" to bring focus to the active terminal
-3. Verify all actions work as expected
+**Expected Result**: 
+- Terminal should open in the bottom panel
+- Success message should appear
+- Terminal should be named "Sidebar Terminal"
 
-#### 5. Test Keyboard Shortcut
+### 5. Keyboard Shortcut
+
+**Test**: Verify keyboard shortcut works
+
+**Steps**:
 1. Press `Cmd+Shift+T` (Mac) or `Ctrl+Shift+T` (Windows/Linux)
-2. Verify a new terminal opens
-3. Verify the notification appears
+2. Check if terminal opens
 
-#### 6. Test Command Palette
-1. Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac)
+**Expected Result**: Terminal should open in bottom panel
+
+### 6. Command Palette
+
+**Test**: Verify command palette integration
+
+**Steps**:
+1. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
 2. Type "Open Terminal in Sidebar"
-3. Select the command and verify it executes
+3. Select the command
 
-#### 7. Test Multiple Terminals
-1. Create multiple terminals using different methods
-2. Verify all terminals are accessible
-3. Test switching between terminals
+**Expected Result**: Terminal should open in bottom panel
 
-### Expected Behavior
+### 7. Theme Integration
 
-✅ **Extension Activation**
-- Extension loads without errors
-- Console shows activation message
-- Sidebar icon appears in activity bar
+**Test**: Verify theme integration
 
-✅ **Sidebar View**
-- Clean, modern interface
-- Three action buttons visible
-- Keyboard shortcut hint displayed
-- VS Code theme integration
+**Steps**:
+1. Change VS Code theme (`Cmd+K Cmd+T` / `Ctrl+K Ctrl+T`)
+2. Check if sidebar styling adapts to new theme
 
-✅ **Terminal Functionality**
-- Terminals open in the correct location
-- Terminal names are descriptive
-- Multiple terminals can be created
-- Focus commands work properly
+**Expected Result**: Sidebar should match the new theme colors
 
-✅ **User Experience**
-- Notifications provide feedback
-- Buttons are responsive
-- Interface is intuitive
-- Keyboard shortcuts work consistently
-
-### Debugging
-
-If tests fail:
-
-1. **Check Debug Console** for error messages
-2. **Verify Extension Activation** - look for activation message
-3. **Check Command Registration** - use command palette to test
-4. **Reload Extension** - press `Ctrl+R` or `Cmd+R`
-5. **Check Terminal Panel** - ensure terminals are visible
+## Debugging
 
 ### Common Issues
 
-**Sidebar not visible:**
-- Check if extension is activated
-- Look for icon in activity bar
-- Try reloading the window
+1. **"No data provider registered" error**
+   - Solution: Complete uninstall and reinstall
+   - Restart VS Code between uninstall and install
 
-**Terminal not opening:**
-- Check Debug Console for errors
-- Verify command is registered
-- Test with command palette
+2. **Sidebar icon not visible**
+   - Check if extension is enabled in Extensions panel
+   - Try reloading VS Code window (`Cmd+R` / `Ctrl+R`)
 
-**Keyboard shortcut not working:**
-- Check for conflicts with other extensions
-- Verify keybinding in package.json
-- Test on different platforms
+3. **Terminal not opening**
+   - Check Debug Console for error messages
+   - Verify extension activation messages
 
-### Performance Testing
+### Debug Console Messages
 
-1. **Startup Time**: Extension should activate quickly
-2. **Memory Usage**: Monitor for memory leaks
-3. **Responsiveness**: Buttons should respond immediately
-4. **Multiple Terminals**: Should handle multiple terminals efficiently
+Look for these messages in the Debug Console:
+- ✅ "Sidebar Terminal extension activated!"
+- ✅ "Registering webview provider..."
+- ✅ "Webview view resolved!"
+- ✅ "Terminal opened in bottom panel!"
 
-### Cross-Platform Testing
+## Performance Testing
 
-Test on:
-- macOS (Cmd+Shift+T)
-- Windows (Ctrl+Shift+T)
-- Linux (Ctrl+Shift+T)
+### Load Time
+- Extension should activate quickly
+- Sidebar should open immediately when clicked
+- Terminal should open within 1-2 seconds
 
-Verify consistent behavior across platforms. 
+### Memory Usage
+- Extension should have minimal memory footprint
+- No memory leaks during repeated terminal opening
+
+## Browser Testing (if applicable)
+
+If testing in VS Code for Web:
+- Verify webview content loads properly
+- Check if terminal functionality works in web environment
+
+## Reporting Issues
+
+When reporting issues, include:
+1. VS Code version
+2. Extension version
+3. Operating system
+4. Steps to reproduce
+5. Debug Console output
+6. Screenshots if applicable

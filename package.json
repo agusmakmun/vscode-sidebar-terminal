@@ -1,19 +1,31 @@
 {
   "name": "sidebar-terminal",
-  "displayName": "sidebar-terminal",
-  "description": "Terminal for the Activity Bar",
+  "displayName": "Sidebar Terminal",
+  "description": "A clean, simple terminal interface in the sidebar for quick terminal access",
   "version": "0.0.1",
-  "publisher": "sidebar-terminal",
+  "publisher": "agusmakmun",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/example/sidebar-terminal.git"
+    "url": "https://github.com/agusmakmun/vscode-sidebar-terminal.git"
   },
   "engines": {
-    "vscode": "^1.102.0"
+    "vscode": "^1.99.0"
   },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "terminal",
+    "sidebar",
+    "webview",
+    "development",
+    "productivity",
+    "command-line",
+    "cli"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -34,17 +46,28 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "sidebar-terminal-view",
+          "id": "sidebar-terminal-container",
           "title": "Sidebar Terminal",
           "icon": "images/terminal-icon.svg"
         }
       ]
     },
+    "menus": {
+      "view/title": [
+        {
+          "command": "sidebar-terminal.open",
+          "when": "view == sidebar-terminal.terminalView",
+          "group": "navigation"
+        }
+      ]
+    },
     "views": {
-      "sidebar-terminal-view": [
+      "sidebar-terminal-container": [
         {
           "id": "sidebar-terminal.terminalView",
-          "name": "Terminal"
+          "name": "Terminal",
+          "when": "true",
+          "type": "webview"
         }
       ]
     }
@@ -58,7 +81,7 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.102.0",
+    "@types/vscode": "^1.99.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
