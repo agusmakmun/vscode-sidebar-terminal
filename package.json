@@ -1,0 +1,71 @@
+{
+  "name": "sidebar-terminal",
+  "displayName": "sidebar-terminal",
+  "description": "Terminal for the Activity Bar",
+  "version": "0.0.1",
+  "publisher": "sidebar-terminal",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/example/sidebar-terminal.git"
+  },
+  "engines": {
+    "vscode": "^1.102.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "sidebar-terminal.open",
+        "title": "Open Terminal in Sidebar"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "sidebar-terminal.open",
+        "key": "ctrl+shift+t",
+        "mac": "cmd+shift+t",
+        "when": "editorTextFocus"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sidebar-terminal-view",
+          "title": "Sidebar Terminal",
+          "icon": "images/terminal-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "sidebar-terminal-view": [
+        {
+          "id": "sidebar-terminal.terminalView",
+          "name": "Terminal"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.102.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.31.1",
+    "@typescript-eslint/parser": "^8.31.1",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2"
+  }
+}
