@@ -10,6 +10,11 @@ A VS Code extension that provides quick terminal access from the sidebar with a 
 - **🚀 Simple & Fast**: Lightweight extension with minimal overhead
 - **🎯 No Conflicts**: Works alongside VS Code's built-in terminal shortcuts
 
+<img width="583" height="177" alt="Screenshot 2025-07-22 at 01 57 25" src="https://github.com/user-attachments/assets/df4f4820-1ac6-40e0-a6d4-99cb562f285e" />
+
+<img width="869" height="591" alt="image" src="https://github.com/user-attachments/assets/62962a42-f0ec-4c33-a276-652e8411a576" />
+
+
 ## Installation
 
 ### From VSIX Package
