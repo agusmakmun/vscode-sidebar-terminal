@@ -47,6 +47,63 @@ npm run compile    # Compile TypeScript
 vsce package       # Create .vsix package
 ```
 
+### Publishing
+
+#### Publishing to VS Code Marketplace
+
+1. **Install vsce globally** (if not already installed):
+```bash
+npm install -g @vscode/vsce
+```
+
+2. **Login to your publisher account**:
+```bash
+vsce login <publisher-name>
+```
+
+3. **Publish the extension**:
+```bash
+vsce publish
+```
+
+#### Publishing to Open VSX Registry
+
+1. **Install ovsx**:
+```bash
+npm install -g ovsx
+```
+
+2. **Publish to Open VSX**:
+```bash
+ovsx publish
+```
+
+#### Manual Installation
+
+For manual installation without publishing:
+
+1. **Build the extension**:
+```bash
+npm run compile
+vsce package
+```
+
+2. **Install in VS Code**:
+   - Open VS Code
+   - Go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+   - Click the "..." menu → "Install from VSIX..."
+   - Select the `sidebar-terminal-0.0.1.vsix` file
+
+#### Publishing Checklist
+
+Before publishing, ensure:
+- ✅ All tests pass (`npm run test`)
+- ✅ Extension compiles without errors (`npm run compile`)
+- ✅ Package.json has correct metadata (version, publisher, etc.)
+- ✅ README.md is up to date
+- ✅ CHANGELOG.md reflects current version
+- ✅ License file is present
+
 ## Usage
 
 ### Quick Start
