@@ -6,9 +6,9 @@ A VS Code extension that provides quick terminal access from the sidebar with a 
 
 - **🖥️ Sidebar Terminal Interface**: Clean terminal access directly from the sidebar
 - **⌨️ One-Click Terminal**: Open terminal in bottom panel with a single click
-- **🎨 VS Code Styling**: Native VS Code theme integration
-- **⌨️ Keyboard Shortcut**: Quick access with `Cmd+Shift+T` (Mac) or `Ctrl+Shift+T` (Windows/Linux)
+- **🎨 Custom Styling**: Beautiful purple button with hover effects
 - **🚀 Simple & Fast**: Lightweight extension with minimal overhead
+- **🎯 No Conflicts**: Works alongside VS Code's built-in terminal shortcuts
 
 ## Installation
 
@@ -60,15 +60,16 @@ vsce package       # Create .vsix package
 
 When you click the Sidebar Terminal icon, you'll see:
 - 💻 Terminal icon
-- "Sidebar Terminal" title
-- "Click the button below to open a terminal in the bottom panel"
-- 📟 "Open Terminal" button
-- Keyboard shortcut hint
+- "Terminal" title
+- "Click the button below to open a new terminal in the bottom panel"
+- 🟣 "Open New Terminal" button (purple color)
 
 ### Keyboard Shortcuts
 
-- **`Cmd+Shift+T`** (Mac) / **`Ctrl+Shift+T`** (Windows/Linux): Open terminal
-- **`Ctrl+Shift+P`** / **`Cmd+Shift+P`**: Command palette → "Open Terminal in Sidebar"
+The extension works alongside VS Code's built-in terminal shortcuts:
+- **`Cmd+Shift+T`** (Mac) / **`Ctrl+Shift+T`** (Windows/Linux): VS Code's built-in terminal
+- **`Ctrl+`` (backtick): Toggle terminal panel
+- **`Ctrl+Shift+P`** / **`Cmd+Shift+P`**: Command palette → "Open Terminal"
 
 ## Development
 
@@ -160,7 +161,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ### v0.0.1
 - Initial release
-- Sidebar terminal interface
-- One-click terminal opening
-- VS Code theme integration
-- Keyboard shortcut support
+- Sidebar terminal interface with clean design
+- One-click terminal opening in bottom panel
+- Custom purple button styling with hover effects
+- No keyboard shortcut conflicts with VS Code built-ins
+- Auto-close sidebar after opening terminal

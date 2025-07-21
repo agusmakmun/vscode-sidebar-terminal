@@ -8,9 +8,11 @@ yarn-error.log*
 out/
 dist/
 *.vsix
+*.vsixmanifest
 
 # TypeScript
 *.tsbuildinfo
+*.js.map
 
 # Environment variables
 .env
@@ -25,6 +27,10 @@ dist/
 *.swp
 *.swo
 *~
+
+# VS Code Extension Development
+.vscode-test/
+.vscode-test.json
 
 # OS generated files
 .DS_Store
@@ -99,4 +105,7 @@ jspm_packages/
 .dynamodb/
 
 # TernJS port file
-.tern-port 
+.tern-port
+
+# Extension development
+extension/ 

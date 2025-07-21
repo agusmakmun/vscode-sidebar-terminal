@@ -11,10 +11,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - Sidebar terminal interface with clean, modern design
 - One-click terminal opening in bottom panel
 - WebviewView-based sidebar implementation
-- VS Code theme integration and native styling
-- Keyboard shortcut support (Cmd+Shift+T / Ctrl+Shift+T)
+- Custom purple button styling (rgb(120, 97, 236)) with hover effects
 - Command palette integration
 - Activity bar icon and sidebar container
+- Auto-close sidebar functionality after opening terminal
 - Comprehensive error handling and debugging
 - TypeScript compilation and ESLint configuration
 - VSIX packaging support
@@ -22,9 +22,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Features
 - **Sidebar Interface**: Clean terminal access directly from the sidebar
 - **One-Click Terminal**: Open terminal in bottom panel with a single click
+- **Custom Styling**: Beautiful purple button with hover effects
 - **VS Code Integration**: Seamless integration with VS Code's native terminal system
-- **Theme Support**: Automatically adapts to VS Code's current theme
-- **Keyboard Shortcuts**: Quick access via keyboard shortcuts
+- **No Conflicts**: Works alongside VS Code's built-in terminal shortcuts
+- **Auto-Close**: Sidebar automatically closes after opening terminal
 - **Lightweight**: Minimal overhead and fast performance
 
 ### Technical Details

@@ -1,7 +1,7 @@
 {
   "name": "sidebar-terminal",
   "displayName": "Sidebar Terminal",
-  "description": "A clean, simple terminal interface in the for quick terminal access",
+  "description": "A clean, simple terminal interface in the sidebar with beautiful purple styling for quick terminal access",
   "version": "0.0.1",
   "publisher": "agusmakmun",
   "license": "MIT",
@@ -35,14 +35,6 @@
         "title": "Open Terminal"
       }
     ],
-    "keybindings": [
-      {
-        "command": "sidebar-terminal.open",
-        "key": "ctrl+shift+t",
-        "mac": "cmd+shift+t",
-        "when": "editorTextFocus"
-      }
-    ],
     "viewsContainers": {
       "activitybar": [
         {
@@ -52,20 +44,11 @@
         }
       ]
     },
-    "menus": {
-      "view/title": [
-        {
-          "command": "sidebar-terminal.open",
-          "when": "view == sidebar-terminal.terminalView",
-          "group": "navigation"
-        }
-      ]
-    },
     "views": {
       "sidebar-terminal-container": [
         {
           "id": "sidebar-terminal.terminalView",
-          "name": "Terminal",
+          "name": "",
           "when": "true",
           "type": "webview"
         }
@@ -78,17 +61,17 @@
     "watch": "tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.99.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.99.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.25.1",
-    "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
   }
 }

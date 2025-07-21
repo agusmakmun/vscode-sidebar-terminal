@@ -2,6 +2,26 @@
 
 This guide helps you test the Sidebar Terminal extension to ensure it's working correctly.
 
+## Running Tests
+
+### Automated Tests
+
+Run the test suite:
+
+```bash
+npm run test
+```
+
+This will:
+1. Compile TypeScript code
+2. Run ESLint checks
+3. Verify extension functionality
+4. Report test results
+
+### Manual Testing
+
+For comprehensive testing, use the manual test cases below:
+
 ## Prerequisites
 
 - VS Code or Cursor editor
@@ -60,36 +80,47 @@ This guide helps you test the Sidebar Terminal extension to ensure it's working 
 - Success message should appear
 - Terminal should be named "Sidebar Terminal"
 
-### 5. Keyboard Shortcut
+### 5. Button Styling
 
-**Test**: Verify keyboard shortcut works
+**Test**: Verify button styling is correct
 
 **Steps**:
-1. Press `Cmd+Shift+T` (Mac) or `Ctrl+Shift+T` (Windows/Linux)
-2. Check if terminal opens
+1. Click the sidebar terminal icon
+2. Look at the "Open New Terminal" button
 
-**Expected Result**: Terminal should open in bottom panel
+**Expected Result**: Button should be purple (rgb(120, 97, 236)) with white text
 
-### 6. Command Palette
+### 6. Button Hover Effect
+
+**Test**: Verify button hover effect works
+
+**Steps**:
+1. Click the sidebar terminal icon
+2. Hover over the "Open New Terminal" button
+
+**Expected Result**: Button should darken to rgb(100, 77, 216) on hover
+
+### 7. Command Palette
 
 **Test**: Verify command palette integration
 
 **Steps**:
 1. Press `Cmd+Shift+P` (Mac) or `Ctrl+Shift+P` (Windows/Linux)
-2. Type "Open Terminal in Sidebar"
+2. Type "Open Terminal"
 3. Select the command
 
 **Expected Result**: Terminal should open in bottom panel
 
-### 7. Theme Integration
+### 8. Auto-Close Functionality
 
-**Test**: Verify theme integration
+**Test**: Verify sidebar auto-closes after opening terminal
 
 **Steps**:
-1. Change VS Code theme (`Cmd+K Cmd+T` / `Ctrl+K Ctrl+T`)
-2. Check if sidebar styling adapts to new theme
+1. Click the sidebar terminal icon
+2. Click the "Open New Terminal" button
+3. Wait 200ms
 
-**Expected Result**: Sidebar should match the new theme colors
+**Expected Result**: Sidebar should automatically close after opening terminal
 
 ## Debugging
 
@@ -110,10 +141,9 @@ This guide helps you test the Sidebar Terminal extension to ensure it's working 
 ### Debug Console Messages
 
 Look for these messages in the Debug Console:
-- ✅ "Sidebar Terminal extension activated!"
-- ✅ "Registering webview provider..."
-- ✅ "Webview view resolved!"
-- ✅ "Terminal opened in bottom panel!"
+- ✅ "Sidebar Terminal extension is now active!"
+- ✅ "Registering webview view provider for sidebar-terminal.terminalView"
+- ✅ "Sidebar terminal webview view resolved!"
 
 ## Performance Testing
 

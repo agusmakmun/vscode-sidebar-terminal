@@ -19,11 +19,6 @@ suite('Sidebar Terminal Extension Test Suite', () => {
 		}
 	});
 
-	test('Should register sidebar-terminal.terminalView webview', async () => {
-		// The webview view provider should be registered
-		assert.ok(true, 'Webview view provider should be registered');
-	});
-
 	test('Command should be executable', async () => {
 		try {
 			await vscode.commands.executeCommand('sidebar-terminal.open');

@@ -6,35 +6,46 @@ export function activate(context: vscode.ExtensionContext) {
     // Register the command to open terminal in bottom panel
     let disposable = vscode.commands.registerCommand('sidebar-terminal.open', () => {
         // Create and show terminal in the bottom panel
-        const terminal = vscode.window.createTerminal('Sidebar Terminal');
+        const terminal = vscode.window.createTerminal('Terminal');
         terminal.show();
-        vscode.window.showInformationMessage('Terminal opened in bottom panel!');
     });
 
     context.subscriptions.push(disposable);
 
+    // Register a simple webview that shows a button to open terminal
+    console.log('Registering webview view provider for sidebar-terminal.terminalView');
+    
     const terminalView = vscode.window.registerWebviewViewProvider(
         'sidebar-terminal.terminalView',
         {
             resolveWebviewView(webviewView: vscode.WebviewView) {
                 console.log('Sidebar terminal webview view resolved!');
-                
+
+                // Set up the webview
+                webviewView.webview.options = {
+                    enableScripts: true,
+                    localResourceRoots: []
+                };
+
                 // Automatically open terminal when sidebar is clicked
                 vscode.commands.executeCommand('sidebar-terminal.open');
                 
                 // Close the sidebar view after opening terminal
                 setTimeout(() => {
                     vscode.commands.executeCommand('workbench.action.closeSidebar');
-                }, 100);
-                
-                // Set up the webview (minimal content since we auto-open)
-                webviewView.webview.options = {
-                    enableScripts: true,
-                    localResourceRoots: []
-                };
+                }, 200);
 
-                // Create minimal HTML content
+                // Create simple HTML content with a button
                 webviewView.webview.html = getWebviewContent(webviewView.webview);
+
+                // Handle messages from the webview
+                webviewView.webview.onDidReceiveMessage(
+                    message => {
+                        if (message.command === 'openTerminal') {
+                            vscode.commands.executeCommand('sidebar-terminal.open');
+                        }
+                    }
+                );
             }
         }
     );
@@ -48,7 +59,7 @@ function getWebviewContent(webview: vscode.Webview): string {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sidebar Terminal</title>
+        <title>Terminal</title>
         <style>
             body {
                 padding: 16px;
@@ -56,45 +67,63 @@ function getWebviewContent(webview: vscode.Webview): string {
                 color: var(--vscode-foreground);
                 background-color: var(--vscode-sideBar-background);
                 margin: 0;
-                text-align: center;
             }
             .container {
-                padding: 20px 0;
+                text-align: center;
             }
             .terminal-icon {
-                font-size: 32px;
-                margin-bottom: 12px;
+                font-size: 48px;
+                margin-bottom: 16px;
                 display: block;
             }
             .title {
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: bold;
                 margin-bottom: 8px;
             }
             .description {
-                font-size: 11px;
+                font-size: 12px;
                 color: var(--vscode-descriptionForeground);
+                margin-bottom: 20px;
                 line-height: 1.4;
             }
-            .shortcut-hint {
-                font-size: 10px;
-                color: var(--vscode-descriptionForeground);
-                margin-top: 16px;
-                opacity: 0.7;
+            .open-btn {
+                background-color: rgb(120, 97, 236);
+                color: white;
+                border: none;
+                padding: 8px 16px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 12px;
+                font-weight: bold;
+                transition: background-color 0.2s;
+                width: 100%;
+            }
+            .open-btn:hover {
+                background-color: rgb(100, 77, 216);
             }
         </style>
     </head>
     <body>
         <div class="container">
             <span class="terminal-icon">💻</span>
-            <div class="title">Terminal Opened</div>
+            <div class="title">Terminal</div>
             <div class="description">
-                Terminal is now open in the bottom panel
+                Click the button below to open a new terminal in the bottom panel
             </div>
-            <div class="shortcut-hint">
-                Shortcut: ⇧⌘T (Mac) / Ctrl+Shift+T (Windows/Linux)
-            </div>
+            <button class="open-btn" onclick="openTerminal()">
+                Open New Terminal
+            </button>
         </div>
+        <script>
+            const vscode = acquireVsCodeApi();
+
+            function openTerminal() {
+                vscode.postMessage({
+                    command: 'openTerminal'
+                });
+            }
+        </script>
     </body>
     </html>`;
 }
