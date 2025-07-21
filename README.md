@@ -16,7 +16,7 @@ A VS Code extension that provides quick terminal access from the sidebar with a 
 
 ### From VSIX Package
 
-1. Download the latest `.vsix` file from releases
+1. Download the latest `.vsix` file from [releases](https://github.com/agusmakmun/vscode-sidebar-terminal/releases)
 2. In VS Code, go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
 3. Click the "..." menu → "Install from VSIX..."
 4. Select the downloaded `.vsix` file
@@ -112,16 +112,19 @@ Before publishing, ensure:
 
 1. **Look for the Sidebar Terminal icon** in the activity bar (left sidebar)
 2. **Click the icon** to open the terminal sidebar view
-3. **Click "📟 Open Terminal"** to open a terminal in the bottom panel
+3. **Click "Open New Terminal"** to open a terminal in the bottom panel
 4. **Use the terminal** as you normally would
+
+**Note**: The sidebar automatically closes after opening the terminal for a clean experience.
 
 ### What You'll See
 
 When you click the Sidebar Terminal icon, you'll see:
-- 💻 Terminal icon
+- 💻 Terminal icon (💻)
 - "Terminal" title
 - "Click the button below to open a new terminal in the bottom panel"
-- 🟣 "Open New Terminal" button (purple color)
+- 🟣 "Open New Terminal" button (purple color: rgb(120, 97, 236))
+- **Auto-close behavior**: Sidebar closes automatically after opening terminal
 
 ### Keyboard Shortcuts
 
@@ -137,13 +140,23 @@ The extension works alongside VS Code's built-in terminal shortcuts:
 ```
 vscode-sidebar-terminal/
 ├── src/
-│   └── extension.ts          # Main extension logic
+│   ├── extension.ts          # Main extension logic
+│   └── test/                 # Test files
+│       ├── extension.test.ts # Extension tests
+│       ├── runTest.ts        # Test runner
+│       └── suite/
+│           └── index.ts      # Test suite configuration
 ├── images/
 │   └── terminal-icon.svg     # Sidebar icon
+├── out/                      # Compiled JavaScript files
 ├── package.json              # Extension manifest
 ├── tsconfig.json            # TypeScript configuration
+├── eslint.config.mjs        # ESLint configuration
 ├── .vscodeignore            # Files excluded from package
 ├── .gitignore               # Git ignore rules
+├── CHANGELOG.md             # Release notes
+├── test-extension.md        # Manual testing guide
+├── LICENSE                  # MIT License
 └── README.md               # This file
 ```
 
@@ -169,9 +182,10 @@ vsce package       # Create VSIX package
 The extension uses VS Code's **WebviewView API** to create a custom sidebar view that:
 
 1. **Registers a WebviewView provider** for the sidebar
-2. **Creates a simple HTML interface** with a terminal button
+2. **Creates a simple HTML interface** with a purple "Open New Terminal" button
 3. **Handles button clicks** to open terminals in the bottom panel
-4. **Integrates with VS Code's native terminal system**
+4. **Auto-closes the sidebar** after opening terminal for clean UX
+5. **Integrates with VS Code's native terminal system**
 
 ## Configuration
 
@@ -185,7 +199,7 @@ The extension requires no configuration and works out of the box. It integrates 
 
 ### Extension Not Working
 
-1. **Check activation**: Look for "Sidebar Terminal extension activated!" in Debug Console
+1. **Check activation**: Look for "Sidebar Terminal extension is now active!" in Debug Console
 2. **Verify installation**: Ensure the extension appears in Extensions list
 3. **Restart VS Code**: Sometimes a restart is needed after installation
 
@@ -222,6 +236,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Initial release
 - Sidebar terminal interface with clean design
 - One-click terminal opening in bottom panel
-- Custom purple button styling with hover effects
+- Custom purple button styling (rgb(120, 97, 236)) with hover effects
+- Auto-close sidebar after opening terminal for clean UX
 - No keyboard shortcut conflicts with VS Code built-ins
-- Auto-close sidebar after opening terminal
+- Comprehensive test suite with 5 passing tests
