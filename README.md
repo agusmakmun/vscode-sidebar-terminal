@@ -16,11 +16,39 @@ A VS Code extension that provides quick terminal access from the sidebar with a 
 
 ### From VSIX Package
 
+#### Method 1: Using VS Code UI
 1. Download the latest `.vsix` file from [releases](https://github.com/agusmakmun/vscode-sidebar-terminal/releases)
 2. In VS Code, go to Extensions (`Ctrl+Shift+X` / `Cmd+Shift+X`)
-3. Click the "..." menu → "Install from VSIX..."
-4. Select the downloaded `.vsix` file
+3. Click the "..." menu (three dots) in the Extensions panel
+4. Select "Install from VSIX..."
+5. Choose the downloaded `.vsix` file
+6. Click "Install"
+7. Restart VS Code when prompted
+
+#### Method 2: Using Command Line
+```bash
+# Download the VSIX file
+wget https://github.com/agusmakmun/vscode-sidebar-terminal/raw/v0.0.1/sidebar-terminal-0.0.1.vsix
+
+# Install using VS Code CLI
+code --install-extension sidebar-terminal-0.0.1.vsix
+```
+
+#### Method 3: Drag and Drop
+1. Download the `.vsix` file to your computer
+2. Open VS Code
+3. Drag the `.vsix` file directly into the VS Code window
+4. Click "Install" when prompted
 5. Restart VS Code
+
+### For Code-Server
+
+If you're using code-server, you can install the extension directly:
+
+```bash
+wget https://github.com/agusmakmun/vscode-sidebar-terminal/raw/v0.0.1/sidebar-terminal-0.0.1.vsix
+code-server --install-extension sidebar-terminal-0.0.1.vsix
+```
 
 ### Development Installation
 
