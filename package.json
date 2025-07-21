@@ -1,7 +1,7 @@
 {
   "name": "sidebar-terminal",
   "displayName": "Sidebar Terminal",
-  "description": "A clean, simple terminal interface in the sidebar for quick terminal access",
+  "description": "A clean, simple terminal interface in the for quick terminal access",
   "version": "0.0.1",
   "publisher": "agusmakmun",
   "license": "MIT",
@@ -32,7 +32,7 @@
     "commands": [
       {
         "command": "sidebar-terminal.open",
-        "title": "Open Terminal in Sidebar"
+        "title": "Open Terminal"
       }
     ],
     "keybindings": [
@@ -47,7 +47,7 @@
       "activitybar": [
         {
           "id": "sidebar-terminal-container",
-          "title": "Sidebar Terminal",
+          "title": "Terminal",
           "icon": "images/terminal-icon.svg"
         }
       ]
