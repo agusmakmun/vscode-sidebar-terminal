@@ -140,18 +140,19 @@ Before publishing, ensure:
 
 1. **Look for the Sidebar Terminal icon** in the activity bar (left sidebar)
 2. **Click the icon** to open the terminal sidebar view
-3. **Click "Open New Terminal"** to open a terminal in the bottom panel
+3. **Click "Open Terminal"** to open a terminal in the bottom panel
 4. **Use the terminal** as you normally would
 
-**Note**: The sidebar automatically closes after opening the terminal for a clean experience.
+**Note**: The extension intelligently reuses existing terminals or creates new ones as needed. The sidebar automatically closes after opening the terminal for a clean experience.
 
 ### What You'll See
 
 When you click the Sidebar Terminal icon, you'll see:
 - 💻 Terminal icon (💻)
 - "Terminal" title
-- "Click the button below to open a new terminal in the bottom panel"
-- 🟣 "Open New Terminal" button (purple color: rgb(120, 97, 236))
+- "Click the button below to open a terminal in the bottom panel"
+- 🟣 "Open Terminal" button (purple color: rgb(120, 97, 236))
+- **Smart behavior**: Creates new terminal only if none exist, otherwise reuses existing
 - **Auto-close behavior**: Sidebar closes automatically after opening terminal
 
 ### Keyboard Shortcuts
@@ -210,10 +211,11 @@ vsce package       # Create VSIX package
 The extension uses VS Code's **WebviewView API** to create a custom sidebar view that:
 
 1. **Registers a WebviewView provider** for the sidebar
-2. **Creates a simple HTML interface** with a purple "Open New Terminal" button
-3. **Handles button clicks** to open terminals in the bottom panel
-4. **Auto-closes the sidebar** after opening terminal for clean UX
-5. **Integrates with VS Code's native terminal system**
+2. **Creates a simple HTML interface** with a purple "Open Terminal" button
+3. **Implements smart terminal logic**: Checks if terminal exists before creating new one
+4. **Handles button clicks** to open/reuse terminals in the bottom panel
+5. **Auto-closes the sidebar** after opening terminal for clean UX
+6. **Integrates with VS Code's native terminal system**
 
 ## Configuration
 
@@ -263,6 +265,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ### v0.0.1
 - Initial release
 - Sidebar terminal interface with clean design
+- Smart terminal logic: reuses existing terminals or creates new ones as needed
 - One-click terminal opening in bottom panel
 - Custom purple button styling (rgb(120, 97, 236)) with hover effects
 - Auto-close sidebar after opening terminal for clean UX

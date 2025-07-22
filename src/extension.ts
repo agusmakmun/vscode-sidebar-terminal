@@ -5,9 +5,18 @@ export function activate(context: vscode.ExtensionContext) {
 
     // Register the command to open terminal in bottom panel
     let disposable = vscode.commands.registerCommand('sidebar-terminal.open', () => {
-        // Create and show terminal in the bottom panel
-        const terminal = vscode.window.createTerminal('Terminal');
-        terminal.show();
+        // Check if there's already a terminal
+        const existingTerminals = vscode.window.terminals;
+
+        if (existingTerminals.length === 0) {
+            // No terminal exists, create a new one
+            const terminal = vscode.window.createTerminal('Terminal');
+            terminal.show();
+        } else {
+            // Terminal already exists, just show it
+            const activeTerminal = vscode.window.activeTerminal || existingTerminals[0];
+            activeTerminal.show();
+        }
     });
 
     context.subscriptions.push(disposable);
@@ -109,10 +118,10 @@ function getWebviewContent(webview: vscode.Webview): string {
             <span class="terminal-icon">💻</span>
             <div class="title">Terminal</div>
             <div class="description">
-                Click the button below to open a new terminal in the bottom panel
+                Click the button below to open a terminal in the bottom panel
             </div>
             <button class="open-btn" onclick="openTerminal()">
-                Open New Terminal
+                Open Terminal
             </button>
         </div>
         <script>
